@@ -46,19 +46,29 @@ public class smallChangeSystem {
                     money = sc.nextDouble();
                     // validate money range( > 0)
 
+                    if (money <= 0) {
+                        System.out.println("Income must be greater than 0");
+                        break;
+                    }
+
                     balance += money;
                     // concatenate balance message
                     date = new Date(); // get current date time
-                    details += "\nIncome: \t+" + money + "\t" + sdf.format(date) + "\t" + balance;
+                    details += "\nIncome \t+" + money + "\t" + sdf.format(date) + "\t" + balance;
                     break;
                 case "3":
                     System.out.print("Outcome amount: ");
                     money = sc.nextDouble();
+                    if (money <= 0 || money > balance) {
+                        System.out.println("Outcome must be greater than 0 and less than balance");
+                        break;
+                    }
+
                     System.out.print("Outcome note: ");
                     note = sc.next();
                     balance -= money;
                     date = new Date();
-                    details += "\n" + note + "\t-" + money + "\t" + sdf.format(date) + "\t" + balance;
+                    details += "\n" + note + " \t-" + money + "\t" + sdf.format(date) + "\t" + balance;
                     break;
                 case "4":
                     // check user want to exit or not
