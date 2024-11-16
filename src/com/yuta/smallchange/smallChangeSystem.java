@@ -24,6 +24,9 @@ public class smallChangeSystem {
         Date date = null;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
+        // 3. change outcome
+        String note = "";
+
         do {
             System.out.println("=====small change menu=====");
             System.out.println("\t1. change detail");
@@ -46,14 +49,31 @@ public class smallChangeSystem {
                     balance += money;
                     // concatenate balance message
                     date = new Date(); // get current date time
-                    details += "\nIncome: +\t" + money + "\t" + sdf.format(date) + "\t" + balance;
+                    details += "\nIncome: \t+" + money + "\t" + sdf.format(date) + "\t" + balance;
                     break;
                 case "3":
-                    System.out.println("3. outcome");
+                    System.out.print("Outcome amount: ");
+                    money = sc.nextDouble();
+                    System.out.print("Outcome note: ");
+                    note = sc.next();
+                    balance -= money;
+                    date = new Date();
+                    details += "\n" + note + "\t-" + money + "\t" + sdf.format(date) + "\t" + balance;
                     break;
                 case "4":
-                    System.out.println("4. exit");
-                    loop = false;
+                    // check user want to exit or not
+                    String choice = "";
+                    while (true) {
+                        System.out.println("Are you sure you want to exit? (y/n): ");
+                        choice = sc.next();
+                        if ("y".equals(choice) || "n".equals(choice)) {
+                            break;
+                        }
+                    }
+
+                    if (choice.equals("y")) {
+                        loop = false;
+                    }
                     break;
                 default:
                     System.out.println("Invalid choice, please select again");
